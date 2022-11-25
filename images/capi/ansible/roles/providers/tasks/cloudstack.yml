@@ -21,6 +21,10 @@
         CloudStack:
           max_wait: 120
           timeout: 50
+      network:
+        config: disabled
+      disable_root: false
+      ssh_deletekeys: false
     owner: root
     group: root
     mode: 0644

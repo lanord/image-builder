@@ -143,6 +143,13 @@
     mode: "0644"
   when: ansible_os_family == "Debian" and kubevirt == "true"
 
+- name: Create netplan for ubuntu 22.04
+  copy:
+    src: files/etc/netplan/01-netcfg.yaml
+    dest: /etc/netplan/01-netcfg.yaml
+    mode: "0644"
+  when: ansible_distribution_release == "jammy"
+
 - name: Find SSH host keys
   find:
     path: /etc/ssh
@@ -230,5 +237,20 @@
 - name: start ssh
   systemd:
     name: ssh
-    enabled: yes
+    enabled: true
+  when: ansible_os_family == "Debian"
+
+- name: prepare the cleaning script
+  copy:
+    src: files/zerodisk.sh
+    dest: /tmp/zerodisk.sh
+    owner: root
+    group: root
+    mode: "0644"
+  when: ansible_os_family == "Debian"
+
+- name: Zero out the free space to lower the size of the image
+  shell:
+    cmd: |
+      bash /tmp/zerodisk.sh
   when: ansible_os_family == "Debian"

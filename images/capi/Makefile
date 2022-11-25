@@ -81,7 +81,7 @@ deps-osc:
 	hack/ensure-packer.sh
 	hack/ensure-goss.sh
 	packer plugins install github.com/outscale/outscale
-   
+
 .PHONY: deps-gce
 deps-gce: ## Installs/checks dependencies for GCE builds
 deps-gce:
@@ -266,7 +266,7 @@ FLATCAR_VERSIONS		:=	flatcar
 PHOTON_VERSIONS			:=	photon-3
 RHEL_VERSIONS			:=	rhel-7 rhel-8
 ROCKYLINUX_VERSIONS     :=  rockylinux-8
-UBUNTU_VERSIONS			:=	ubuntu-1804 ubuntu-2004 ubuntu-2004-efi
+UBUNTU_VERSIONS			:=	ubuntu-1804 ubuntu-2004 ubuntu-2004-efi ubuntu-2204 ubuntu-2204-efi
 WINDOWS_VERSIONS		:=	windows-2019 windows-2004 windows-2022
 
 # Set Flatcar Container Linux channel and version if not supplied
@@ -310,7 +310,7 @@ DO_BUILD_NAMES 			?=	do-centos-7 do-ubuntu-1804 do-ubuntu-2004
 
 OSC_BUILD_NAMES 			?=	osc-centos-7 osc-ubuntu-2004
 
-QEMU_BUILD_NAMES			?=	qemu-ubuntu-1804 qemu-ubuntu-2004 qemu-centos-7 qemu-ubuntu-2004-efi qemu-rhel-8 qemu-rockylinux-8 qemu-flatcar
+QEMU_BUILD_NAMES			?=	qemu-ubuntu-1804 qemu-ubuntu-2004 qemu-ubuntu-2204 qemu-centos-7 qemu-ubuntu-2004-efi qemu-ubuntu-2204-efi qemu-rhel-8 qemu-rockylinux-8 qemu-flatcar
 QEMU_KUBEVIRT_BUILD_NAMES	:= $(addprefix kubevirt-,$(QEMU_BUILD_NAMES))
 
 RAW_BUILD_NAMES                        ?=      raw-ubuntu-1804 raw-ubuntu-2004 raw-ubuntu-2004-efi raw-flatcar
@@ -642,6 +642,8 @@ build-qemu-flatcar: ## Builds Flatcar QEMU image
 build-qemu-ubuntu-1804: ## Builds Ubuntu 18.04 QEMU image
 build-qemu-ubuntu-2004: ## Builds Ubuntu 20.04 QEMU image
 build-qemu-ubuntu-2004-efi: ## Builds Ubuntu 20.04 QEMU image that EFI boots
+build-qemu-ubuntu-2204: ## Builds Ubuntu 22.04 QEMU image
+build-qemu-ubuntu-2204-efi: ## Builds Ubuntu 22.04 QEMU image that EFI boots
 build-qemu-centos-7: ## Builds CentOS 7 QEMU image
 build-qemu-rhel-8: ## Builds RHEL 8 QEMU image
 build-qemu-rockylinux-8: ## Builds Rocky 8 QEMU image
@@ -747,6 +749,8 @@ validate-qemu-flatcar: ## Validates Flatcar QEMU image packer config
 validate-qemu-ubuntu-1804: ## Validates Ubuntu 18.04 QEMU image packer config
 validate-qemu-ubuntu-2004: ## Validates Ubuntu 20.04 QEMU image packer config
 validate-qemu-ubuntu-2004-efi: ## Validates Ubuntu 20.04 QEMU EFI image packer config
+validate-qemu-ubuntu-2204: ## Validates Ubuntu 22.04 QEMU image packer config
+validate-qemu-ubuntu-2204-efi: ## Validates Ubuntu 22.04 QEMU EFI image packer config
 validate-qemu-centos-7: ## Validates CentOS 7 QEMU image packer config
 validate-qemu-rhel-8: ## Validates RHEL 8 QEMU image
 validate-qemu-rockylinux-8: ## Validates Rocky Linux 8 QEMU image packer config

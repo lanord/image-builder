@@ -1,0 +1,7 @@
+{
+  "ansible_user_vars": "provider=cloudstack",
+  "crictl_version": "1.25.0",
+  "kubernetes_deb_version": "1.25.4-00",
+  "kubernetes_semver": "v1.25.4",
+  "kubernetes_series": "v1.25"
+}
