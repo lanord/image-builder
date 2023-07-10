@@ -29,7 +29,13 @@ esac
 
 _hostarch=$(uname -m)
 case "${_hostarch}" in
-*64*)
+*aarch64*)
+  HOSTARCH=arm64
+  ;;
+*arm64*)
+  HOSTARCH=arm64
+  ;;
+*x86_64*)
   HOSTARCH=amd64
   ;;
 *386*)
@@ -91,5 +97,13 @@ ensure_py3() {
     python3 get-pip.py --user
     rm -f get-pip.py
     ensure_py3_bin pip3
+  fi
+}
+
+hostarch_without_darwin_arm64() {
+  if [ "${HOSTOS}" == "darwin" ] && [ "${HOSTARCH}" == "arm64" ]; then
+    echo "amd64"
+  else
+    echo ${HOSTARCH}
   fi
 }

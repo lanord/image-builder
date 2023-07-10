@@ -27,11 +27,11 @@ if command -v gsed >/dev/null; then
   SED="gsed"
 fi
 if ! (${SED} --version 2>&1 | grep -q GNU); then
-  echo "!!! GNU sed is required.  If on OS X, use 'brew install gnu-sed'." >&2
+  echo "!!! GNU sed is required.  If on macOS, use 'brew install gnu-sed'." >&2
   exit 1
 fi
 
-_version="0.1.6"
+_version="0.2.1"
 _chkfile="packer-plugin-powervs_v${_version}_SHA256SUMS"
 _chk_url="https://github.com/ppc64le-cloud/packer-plugin-powervs/releases/download/v${_version}/${_chkfile}"
 _bin_url="https://github.com/ppc64le-cloud/packer-plugin-powervs/releases/download/v${_version}/packer-plugin-powervs_v${_version}_x5.0_${HOSTOS}_${HOSTARCH}.zip"
